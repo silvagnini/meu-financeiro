@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinancePro - ERP Mobile</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <div class="app-container">
+        <header>
+            <h1>Finance<span>Pro</span></h1>
+            <nav class="tab-menu">
+                <button id="btn-lancamentos" onclick="abrirAba('lancamentos')" class="active">Lançar</button>
+                <button id="btn-contas" onclick="abrirAba('contas')">Contas</button>
+                <button id="btn-dashboard" onclick="abrirAba('dashboard')">Painel</button>
+            </nav>
+        </header>
+
+        <div class="month-filter">
+            <input type="month" id="filtro-mes" onchange="atualizarInterface()">
+        </div>
+
+            <div class="summary-cards">
+                <div class="card saldo-positivo">
+                    <small>Receitas</small>
+                    <h2 id="resumo-receitas">R$ 0,00</h2>
+                </div>
+                <div class="card saldo-negativo">
+                    <small>Despesas</small>
+                    <h2 id="resumo-despesas">R$ 0,00</h2>
+                </div>
+                <div class="card" id="card-saldo-geral">
+                    <small>Saldo Geral</small>
+                    <h2 id="resumo-saldo-geral">R$ 0,00</h2>
+                </div>
+            </div>
+        <div id="lancamentos" class="aba-content">
+            <div class="form-section">
+                <h3>Novo Lançamento</h3>
+                <input type="text" id="desc" placeholder="Ex: Aluguel, Supermercado">
+                <input type="number" id="valor" placeholder="Valor R$">
+                
+                <select id="tipo">
+                    <option value="receita">Receita (Entrada)</option>
+                    <option value="fixa">Conta Fixa (Saída)</option>
+                    <option value="parcelada">Compra Parcelada (Saída)</option>
+                    <option value="Variavel">Despesa Variavel (Saída)</option>
+                </select>
+
+                <select id="categoria">
+                    <option value="Moradia"> Moradia</option>
+                    <option value="Serviços"> Serviços (Luz/Água)</option>
+                    <option value="Alimentação"> Alimentação</option>
+                    <option value="Lazer"> Lazer</option>
+                    <option value="Assinaturas"> Assinaturas/Apps</option>
+                    <option value="Carros"> Carro</option>
+                    <option value="Cartão de credito"> Cartão de Credito</option>
+                    <option value="Despesas Variaveis"> Despesas Variaveis</option>
+                    <option value="Outros"> Outros/Salário</option>
+                    
+                </select>
+
+                <input type="date" id="data-vencimento">
+
+                <div id="area-parcelas" style="display:none;">
+                    <input type="number" id="num-parcelas" placeholder="Qtd de parcelas" min="1">
+                </div>
+                
+                <button class="btn-salvar" onclick="salvarDados()">Confirmar</button>
+            </div>
+        </div>
+
+        <div id="contas" class="aba-content" style="display:none;">
+            <h3>Fluxo de Saídas</h3>
+            <div id="lista-contas"></div>
+        </div>
+
+        <div id="dashboard" class="aba-content" style="display:none;">
+            <h3>Gastos por Categoria</h3>
+            <div class="chart-container">
+                <canvas id="graficoBarras"></canvas>
+            </div>
+        </div>
+        <div style="margin-top: 30px; text-align: center;">
+            <button onclick="limparTodoHistorico()" style="background-color: transparent; border: 1px solid #ef4444; color: #ef4444; padding: 10px; border-radius: 10px; cursor: pointer; font-size: 12px;">
+                ⚠️ Apagar Todos os Dados (Zerar App)
+            </button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

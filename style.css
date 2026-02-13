@@ -1,0 +1,68 @@
+:root {
+    --bg-color: #0f172a;
+    --card-bg: #1e293b;
+    --text-color: #f8fafc;
+    --primary: #22c55e;
+    --secondary: #ef4444;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0; padding: 10px;
+}
+
+.app-container { max-width: 450px; margin: auto; }
+
+/* Menu */
+.tab-menu {
+    display: flex; justify-content: space-around;
+    background: var(--card-bg); padding: 8px; border-radius: 15px; margin-bottom: 15px;
+}
+
+.tab-menu button {
+    background: transparent; border: none; color: #94a3b8; padding: 10px; font-weight: bold;
+}
+
+.tab-menu button.active { background: var(--primary); color: white; border-radius: 10px; }
+
+/* Filtro de Mês */
+.month-filter { margin-bottom: 15px; text-align: center; }
+.month-filter input { 
+    background: var(--card-bg); border: 1px solid #475569; color: white; 
+    padding: 8px; border-radius: 10px; width: 100%;
+}
+
+/* Cards */
+.summary-cards { display: flex; gap: 10px; margin-bottom: 20px; }
+.card {
+    flex: 1; background: var(--card-bg); padding: 15px; border-radius: 15px; text-align: center;
+}
+.saldo-positivo { border-bottom: 4px solid var(--primary); }
+.saldo-negativo { border-bottom: 4px solid var(--secondary); }
+
+/* Form e Itens */
+.form-section { background: var(--card-bg); padding: 20px; border-radius: 20px; display: flex; flex-direction: column; gap: 12px; }
+input, select { background: #334155; border: 1px solid #475569; padding: 12px; color: white; border-radius: 10px; }
+.btn-salvar { background: var(--primary); color: white; border: none; padding: 15px; border-radius: 12px; font-weight: bold; cursor: pointer; }
+
+.item-conta {
+    background: var(--card-bg); padding: 15px; margin-bottom: 10px; border-radius: 12px;
+    display: flex; justify-content: space-between; align-items: center;
+}
+.chart-container {
+    position: relative;
+    height: 400px; /* Altura fixa para acomodar todas as categorias */
+    width: 100%;
+    margin-top: 20px;
+}
+.btn-salvar:active {
+    transform: scale(0.98); /* Dá a sensação de botão pressionado */
+    filter: brightness(0.9);
+}
+button[onclick="limparTodoHistorico()"]:hover {
+    background-color: #ef4444 !important;
+    color: white !important;
+    transition: 0.3s;
+}
